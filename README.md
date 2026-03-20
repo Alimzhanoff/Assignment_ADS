@@ -1,8 +1,9 @@
-# Assignment-1
-
 # Assignment 1 - Recursion
 **Student:** Alimzhan Adilzhan
 **Group:** IT-2504
+
+
+All my codes was wrote in Main.java used principles of OOP. 
 
 **Task 1
 
