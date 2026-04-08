@@ -5,20 +5,26 @@ Assignment 2 - Physical & Logical Data Structures
 
 All my codes was wrote in Main.java used principles of OOP. 
 
-To complete Task 1
-Description: I created a BankAccount class with fields for account number, username, and balance. I used a LinkedList to store these accounts because it allows for dynamic data management without a fixed size. I added functionality to create new accounts, display the full list, and search for specific users by their name.
+Task 1: Bank Account Storage
+In this task, I created a BankAccount class to represent a user with fields for account number, name, and balance. I used a LinkedList to store these objects. This choice is based on the fact that a LinkedList is a logical data structure that allows for dynamic memory allocation, making it easy to add new accounts. I also implemented a search function to find users in the list and a display function to print all active accounts.
 
-Task 2
-Description:I expanded the code to handle money operations. I wrote logic that finds a user in the LinkedList and updates their balance when they make a deposit or a withdrawal.
+Task 2: Deposit and Withdraw Operations
+I implemented financial logic to modify the data within the LinkedList. The program allows the user to select an account and perform a deposit or withdrawal. The system updates the balance field of the specific BankAccount object directly in memory. This demonstrates how data in a logical structure can be updated dynamically during program execution.
 
-Task 3
-Description:I implemented a Stack of strings called transactionHistory. Every time a user completes a transaction, the program pushes a description of that action onto the stack. I also added a pop function to undo the last transaction and a peek function to show the most recent action.
+Task 3: Transaction History
+For this task, I used a Stack to track every transaction. This follows the LIFO (Last-In-First-Out) principle, which is ideal for an undo feature. Each transaction is pushed onto the stack as a string record. I implemented the pop method to remove the most recent transaction from the history and the peek method to allow the user to see the last action without deleting it.
 
-Task 4 and 5, Description: I used the Queue structure. I created one queue for bill payments where requests are processed in a first-in, first-out order. I also made an accountRequests queue for the admin simulation. When a user asks to open a account, it stays in the queue until the admin processes it and moves it to the main LinkedList.
+Task 4: Bill Payment Queue
+I used a Queue to simulate a bill payment system. This follows the FIFO (First-In-First-Out) principle, meaning that bills are processed in the exact order they were added. Users can add bills to the queue, and the system processes them one by one, ensuring a fair and organized payment sequence.
 
-Task 6 
-Description:I created a basic physical array of BankAccount objects with a size of 3. I filled it with predefined data and printed it to show how a fixed-size physical structure works compared to a logical one.Finally, I built a main menu that connects all these parts. It has three sections: a Bank Menu for user requests, an ATM Menu for balance checks and withdrawals, and an Admin Area to process the bill and account queues.
+Task 5: Account Opening Queue
+I implemented another Queue to handle requests for opening new accounts. When a user submits their details, the request is placed in this queue. An administrator can then process these requests. Once processed, the account is moved from the queue into the main LinkedList of active accounts. This shows how multiple logical structures can interact with each other.
 
+Task 6: Physical Data Structure (Array)
+To demonstrate a physical data structure, I created a standard Java array of BankAccount objects with a fixed size of 3. I initialized the array with predefined data. This task highlights the difference between an array, which has a static size and contiguous memory allocation, and a LinkedList, which is more flexible for growing data sets.
+
+Brief summary of work process
+The work process involved setting up the basic class structure and then implementing each logical data structure one by one. I focused on making sure that the stack and queues handle data correctly without causing errors. I faced a minor issue with the scanner skipping lines when switching between numbers and strings, but I fixed it by using the parse method. The final step was creating a menu that integrates all these functions into a single banking application.
 
 
 
