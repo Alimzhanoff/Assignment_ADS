@@ -3,7 +3,7 @@ import java.util.Queue;
 import java.util.Stack;
 import java.util.Scanner;
 
-// Task 1: Create a class BankAccount [cite: 24, 25]
+
 class BankAccount {
     String accountNumber;
     String username;
@@ -22,17 +22,13 @@ class BankAccount {
 }
 
 public class Main {
-    // Part 1: Logical Data Structures
-    // Task 1: LinkedList to store accounts
+
     static LinkedList<BankAccount> accounts = new LinkedList<>();
 
-    // Task 3: Transaction History (Stack - LIFO)
     static Stack<String> history = new Stack<>();
 
-    // Task 4: Bill Payment Queue (Queue - FIFO)
     static Queue<String> billQueue = new LinkedList<>();
 
-    // Task 5: Account Opening Queue
     static Queue<BankAccount> accountRequests = new LinkedList<>();
 
     static Scanner scanner = new Scanner(System.in);
@@ -40,32 +36,31 @@ public class Main {
     public static void main(String[] args) {
         runTask6_PhysicalStructure();
 
-        // Инициализируем базовые данные для Task 1
         accounts.add(new BankAccount("1", "Ali", 150000));
         accounts.add(new BankAccount("2", "Sara", 220000));
         System.out.println("\n[System] Initial accounts added successfully.");
 
-        // Запускаем меню интеграции (Part 3) [cite: 91]
         runMainMenu();
     }
 
-    // Part 2. Physical Data Structures (Task 6)
+
     public static void runTask6_PhysicalStructure() {
         System.out.println("=== Task 6: Physical Data Structure (Array) ===");
-        // Creates array BankAccount[3] [cite: 89]
+
         BankAccount[] physicalArray = new BankAccount[3];
         physicalArray[0] = new BankAccount("A1", "John", 1000);
         physicalArray[1] = new BankAccount("A2", "Mike", 2000);
         physicalArray[2] = new BankAccount("A3", "Anna", 3000);
 
-        // Prints them
+
+
         for (BankAccount acc : physicalArray) {
             System.out.println(acc);
         }
         System.out.println("===============================================\n");
     }
 
-    // Part 3. Mini Banking Menu
+
     public static void runMainMenu() {
         while (true) {
             System.out.println("\n--- MAIN MENU ---");
@@ -210,7 +205,7 @@ public class Main {
 
     // --- UTILITY METHODS ---
 
-    // Task 1: Search account
+
     public static BankAccount findAccount(String username) {
         for (BankAccount acc : accounts) {
             if (acc.username.equalsIgnoreCase(username)) {
@@ -220,7 +215,7 @@ public class Main {
         return null;
     }
 
-    // Task 2 & Task 3: Deposit/Withdraw and add to Stack
+
     public static void performTransaction(boolean isDeposit) {
         System.out.print("Enter username: "); // [cite: 47]
         String name = scanner.nextLine();
@@ -250,7 +245,7 @@ public class Main {
         }
     }
 
-    // Task 3: Handle Stack functions
+
     public static void handleHistory() {
         System.out.println("1. Display last transaction (peek)");
         System.out.println("2. Undo last transaction (pop)");
@@ -267,8 +262,7 @@ public class Main {
             if (!history.isEmpty()) {
                 String removed = history.pop();
                 System.out.println("Undo: " + removed + " removed from history.");
-                // (Note: To strictly implement financial undo, we would reverse the math,
-                // but removing from the logging stack satisfies the pop requirement).
+
             } else {
                 System.out.println("No transactions to undo.");
             }
