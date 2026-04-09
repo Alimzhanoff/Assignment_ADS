@@ -1,181 +1,271 @@
-import java.sql.SQLOutput;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 import java.util.Scanner;
+
+
+class BankAccount {
+    String accountNumber;
+    String username;
+    double balance;
+
+    public BankAccount(String accountNumber, String username, double balance) {
+        this.accountNumber = accountNumber;
+        this.username = username;
+        this.balance = balance;
+    }
+
+    @Override
+    public String toString() {
+        return "Account: " + accountNumber + " | User: " + username + " | Balance: " + balance;
+    }
+}
 
 public class Main {
 
-    // Task 1: Print Digits
-    public static void printDigits(int n) {
-        if (n == 0) {
-            return;
-        }
-        printDigits(n / 10);
-        System.out.println(n % 10);
-    }
+    static LinkedList<BankAccount> accounts = new LinkedList<>();
 
-    // Task 2: Array Methods
-    public static void fillArray(int[] arr, int index, Scanner sc) {
-        if (index == arr.lengthя) {
-            return;
-        }
-        arr[index] = sc.nextInt();
-        fillArray(arr, index + 1, sc);
-    }
+    static Stack<String> history = new Stack<>();
 
-    public static double findSum(int[] arr, int n) {
-        if (n <= 0) {
-            return 0;
-        }
-        return findSum(arr, n - 1) + arr[n - 1];
-    }
+    static Queue<String> billQueue = new LinkedList<>();
 
-    // Task 3
+    static Queue<BankAccount> accountRequests = new LinkedList<>();
 
-    public static String checkNumber(int n, int d){
-        if(n < 2)
-            return "Composite";
-
-        if(n == 2){
-            return "Prime!";
-        }
-        if(n % d == 0){
-            return "Composite!";
-        }
-        if(d *d > n)
-            return "Prime!";
-
-        return checkNumber(n, d + 1);
-    }
-
-    //Task 4
-
-    public static int factorial(int n){
-        if(n <= 1){
-            return 1;
-        }
-        return n*factorial(n - 1);
-    }
-
-    //Task 5
-    public static int findFibonachi(int n){
-        if (n <= 1){
-            return n;
-        }
-        return findFibonachi(n - 1) + findFibonachi(n - 2);
-    }
-
-    //Task 6
-    public static int power(int n, int d){
-        if (d == 0){
-            return 1;
-        }
-        return n * power(n, d - 1);
-    }
-
-    //Task 7
-    public static int reverseArray(int[] arr, int index) {
-        if (index < 0) {
-            return 0;
-        }
-        System.out.println(arr[index] + " ");
-        return reverseArray(arr, index - 1);
-    }
-
-    //Task 8
-    public static String isAllDigits(String s){
-        if(s.isEmpty()){
-         return "Yes";
-        }
-        char first = s.charAt(0);
-        if(Character.isDigit(first)){
-            return isAllDigits(s.substring(1));
-        }else{
-            return "No";
-        }
-    }
-    //Task 9
-    public static int binominal(int b, int k){
-        if(k == 0 || k == b){
-            return 1;
-        }
-        return binominal(b - 1, k - 1) + binominal(b - 1, k);
-    }
-    //Task 10
-    public static int findGCD(int a, int s1){
-        if(s1== 0){
-         return a;
-        }
-        return findGCD(s1, a % s1);
-    }
-
-
+    static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        runTask6_PhysicalStructure();
 
-        // TASK 1
-        System.out.print("Task 1 - Enter a number: ");
-        int n1 = scanner.nextInt();
-        if (n1 == 0) System.out.println(0);
-        else printDigits(n1);
+        accounts.add(new BankAccount("1", "Ali", 150000));
+        accounts.add(new BankAccount("2", "Sara", 220000));
+        System.out.println("\n[System] Initial accounts added successfully.");
 
-        // TASK 2
-        System.out.print("\nTask 2 - Enter number of elements: ");
-        int n2 = scanner.nextInt();
-        int[] arr = new int[n2];
-        fillArray(arr, 0, scanner);
-        System.out.println(findSum(arr, n2) / n2);
-
-        // TASK 3
-        System.out.println("Input a number:");
-        int n3 = scanner.nextInt();
-        System.out.println(checkNumber( n3, 2));
-
-       // TASK 4
-        System.out.println("Task 4\n" + "Input a number for factorial:" );
-        int n4 = scanner.nextInt();
-        System.out.println(factorial(n4));
-
-        //TASK 5
-        System.out.println("Task 5 \n" + "Input a number for find it in Fibonachi set:");
-        int n5 = scanner.nextInt();
-        System.out.println("Fiblonachi number:" + findFibonachi(n5));
-
-        //TASK 6
-        System.out.println("Task 6 \n" + "Input number");
-        int n6 = scanner.nextInt();
-        System.out.println("Input a rank of number");
-        int d1 = scanner.nextInt();
-        System.out.println("Result:" + power(n6, d1));
-
-        //TASK 7
-        System.out.println("Task 7\n" + "Input a number:");
-        int n7 = scanner.nextInt();
-        int arr7[] = new int[n7];
-        System.out.println("Input a numbers:");
-        fillArray(arr7, 0, scanner);
-        System.out.println("Reverse order:");
-        reverseArray(arr7, n7 - 1);
-        System.out.println();
-
-        //TASK 8
-        System.out.println("Task 8\n" + "Input a number:");
-        String s = scanner.nextLine();
-        System.out.println(isAllDigits(s));
-
-        //TASK 9
-        System.out.println("Task 9\n" + "input a first number:");
-        int b = scanner.nextInt();
-        System.out.println("input a second number:");
-        int k = scanner.nextInt();
-        System.out.println(binominal(b, k));
-
-        //TASK 10
-        System.out.println("Task 10 \n" + "Input a number");
-        int a = scanner.nextInt();
-        System.out.println("Input a second number");
-        int s1 = scanner.nextInt();
-        System.out.println("GCD is:" + findGCD(a, s1));
+        runMainMenu();
+    }
 
 
+    public static void runTask6_PhysicalStructure() {
+        System.out.println("=== Task 6: Physical Data Structure (Array) ===");
+
+        BankAccount[] physicalArray = new BankAccount[3];
+        physicalArray[0] = new BankAccount("A1", "John", 1000);
+        physicalArray[1] = new BankAccount("A2", "Mike", 2000);
+        physicalArray[2] = new BankAccount("A3", "Anna", 3000);
+
+
+
+        for (BankAccount acc : physicalArray) {
+            System.out.println(acc);
+        }
+        System.out.println("===============================================\n");
+    }
+
+
+    public static void runMainMenu() {
+        while (true) {
+            System.out.println("\n--- MAIN MENU ---");
+            System.out.println("1. Enter Bank");
+            System.out.println("2. Enter ATM");
+            System.out.println("3. Admin Area");
+            System.out.println("4. Exit");
+            System.out.print("Choose option: ");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1": bankMenu(); break;
+                case "2": atmMenu(); break;
+                case "3": adminMenu(); break;
+                case "4":
+                    System.out.println("Exiting system. Goodbye!");
+                    return;
+                default: System.out.println("Invalid input!");
+            }
+        }
+    }
+
+    // --- BANK MENU ---
+    public static void bankMenu() {
+        System.out.println("\n--- BANK MENU ---");
+        System.out.println("1. Submit account opening request"); //
+        System.out.println("2. Deposit money"); // [cite: 105]
+        System.out.println("3. Withdraw money"); // [cite: 106]
+        System.out.println("4. Transaction History (Undo/Peek)"); // Task 3
+        System.out.println("5. Back to Main Menu");
+        System.out.print("Choose option: ");
+
+        String choice = scanner.nextLine();
+
+        switch (choice) {
+            case "1":
+                System.out.print("Enter new account number: ");
+                String accNum = scanner.nextLine();
+                System.out.print("Enter username: ");
+                String name = scanner.nextLine();
+                System.out.print("Enter initial balance: ");
+                double balance = Double.parseDouble(scanner.nextLine());
+                // Task 5: Add account request to queue [cite: 84]
+                accountRequests.add(new BankAccount(accNum, name, balance));
+                System.out.println("Request submitted. Waiting for admin approval.");
+                break;
+            case "2":
+                performTransaction(true); // Task 2 Deposit
+                break;
+            case "3":
+                performTransaction(false); // Task 2 Withdraw
+                break;
+            case "4":
+                handleHistory(); // Task 3 Stack operations
+                break;
+            case "5": return;
+            default: System.out.println("Invalid input!");
+        }
+    }
+
+    // --- ATM MENU ---
+    public static void atmMenu() {
+        System.out.println("\n--- ATM MENU ---");
+        System.out.println("1. Balance enquiry"); //
+        System.out.println("2. Withdraw money"); //
+        System.out.println("3. Back to Main Menu");
+        System.out.print("Choose option: ");
+
+        String choice = scanner.nextLine();
+
+        switch (choice) {
+            case "1":
+                System.out.print("Enter username: ");
+                String name = scanner.nextLine();
+                BankAccount acc = findAccount(name); // Task 1 Search
+                if (acc != null) {
+                    System.out.println("Balance for " + name + ": " + acc.balance);
+                } else {
+                    System.out.println("Account not found.");
+                }
+                break;
+            case "2":
+                performTransaction(false); // Task 2 Withdraw
+                break;
+            case "3": return;
+            default: System.out.println("Invalid input!");
+        }
+    }
+
+    // --- ADMIN MENU ---
+    public static void adminMenu() {
+        System.out.println("\n--- ADMIN MENU ---");
+        System.out.println("1. View and process account queue");
+        System.out.println("2. View and process bill payment queue");
+        System.out.println("3. Add bill to queue (Simulation)");
+        System.out.println("4. Display all active accounts");
+        System.out.println("5. Back to Main Menu");
+        System.out.print("Choose option: ");
+
+        String choice = scanner.nextLine();
+
+        switch (choice) {
+            case "1":
+                // Task 5: Process request
+                System.out.println("Pending account requests: " + accountRequests.size());
+                if (!accountRequests.isEmpty()) {
+                    BankAccount newAcc = accountRequests.poll();
+                    accounts.add(newAcc);
+                    System.out.println("Processed and approved: " + newAcc.username);
+                } else {
+                    System.out.println("No pending requests.");
+                }
+                break;
+            case "2":
+                // Task 4: Process next bill payment [cite: 72]
+                System.out.println("Bills in queue: " + billQueue); //
+                if (!billQueue.isEmpty()) {
+                    String bill = billQueue.poll();
+                    System.out.println("Processing: " + bill); //
+                    history.push("Bill paid: " + bill); // Task 3
+                } else {
+                    System.out.println("No bills to process.");
+                }
+                break;
+            case "3":
+                System.out.print("Enter bill name (e.g., Electricity Bill): ");
+                String billName = scanner.nextLine();
+                billQueue.add(billName);
+                System.out.println("Added: " + billName);
+                break;
+            case "4":
+                System.out.println("Accounts List:");
+                for (BankAccount a : accounts) {
+                    System.out.println(a.username + " - Balance: " + a.balance);
+                }
+                break;
+            case "5": return;
+            default: System.out.println("Invalid input!");
+        }
+    }
+
+    // --- UTILITY METHODS ---
+
+
+    public static BankAccount findAccount(String username) {
+        for (BankAccount acc : accounts) {
+            if (acc.username.equalsIgnoreCase(username)) {
+                return acc;
+            }
+        }
+        return null;
+    }
+
+
+    public static void performTransaction(boolean isDeposit) {
+        System.out.print("Enter username: "); // [cite: 47]
+        String name = scanner.nextLine();
+        BankAccount acc = findAccount(name);
+
+        if (acc != null) {
+            System.out.print("Enter amount: ");
+            double amount = Double.parseDouble(scanner.nextLine());
+
+            if (isDeposit) {
+                acc.balance += amount; // [cite: 45]
+                System.out.println("Deposit: " + amount); // [cite: 48]
+                history.push("Deposit " + amount + " to " + name); //
+            } else {
+                if (acc.balance >= amount) {
+                    acc.balance -= amount; // [cite: 45]
+                    System.out.println("Withdraw: " + amount);
+                    history.push("Withdraw " + amount + " from " + name); //
+                } else {
+                    System.out.println("Insufficient funds!");
+                    return;
+                }
+            }
+            System.out.println("New balance: " + acc.balance); //
+        } else {
+            System.out.println("Account not found!");
+        }
+    }
+
+
+    public static void handleHistory() {
+        System.out.println("1. Display last transaction (peek)");
+        System.out.println("2. Undo last transaction (pop)");
+        System.out.print("Choose: ");
+        String opt = scanner.nextLine();
+
+        if (opt.equals("1")) {
+            if (!history.isEmpty()) {
+                System.out.println("Last transaction: " + history.peek());
+            } else {
+                System.out.println("No transactions yet.");
+            }
+        } else if (opt.equals("2")) {
+            if (!history.isEmpty()) {
+                String removed = history.pop();
+                System.out.println("Undo: " + removed + " removed from history.");
+
+            } else {
+                System.out.println("No transactions to undo.");
+            }
+        }
     }
 }
