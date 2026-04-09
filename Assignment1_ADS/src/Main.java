@@ -45,7 +45,7 @@ public class Main {
 
 
     public static void runTask6_PhysicalStructure() {
-        System.out.println("=== Task 6: Physical Data Ыtructure (Array) ===");
+        System.out.println("=== Task 6: Physical Data Structure (Array) ===");
 
         BankAccount[] physicalArray = new BankAccount[3];
         physicalArray[0] = new BankAccount("A1", "John", 1000);
