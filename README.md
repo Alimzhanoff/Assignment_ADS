@@ -1,35 +1,46 @@
-Assignment 3 - Sorting and Searching Algorithm Analysis Student: Alimzhan Adilzhan Group: IT-2504
+Assignment #4 
+Group: IT-2504
+Student name: Alimzhan Adilzhan
 
-Project Overview This project implements and compares fundamental sorting and searching algorithms to analyze their performance using Big-O notation in a practical Java environment.
+Graph Traversal and Representation System
+A. Project Overview
+This project focuses on the implementation and analysis of a graph data structure using Java. The goal is to represent vertices and edges effectively and compare the performance of fundamental traversal algorithms.  Graph Structure: I used an Adjacency List to store the graph, which is efficient for memory and vertex lookup. 
 
-Selected Algorithms: Basic Sort: Bubble Sort Advanced Sort: Quick Sort Searching: Linear Search
+Vertices and Edges: A vertex represents a unique node, while an edge represents the connection (directed or undirected) between two nodes.  BFS and DFS: These are the two primary ways to explore a graph's structure, each with distinct behaviors and use cases. 
 
-Algorithm Descriptions
+B. Class Descriptions
+The project is divided into several classes to maintain a clean OOP structure:  Vertex: A class representing a node with a unique id.  Edge: A class representing a connection between a source and a destination vertex.  Graph: The core class that manages the Adjacency List and handles the logic for adding vertices/edges and performing traversals. 
+Experiment: A utility class used to automate the testing of different graph sizes and measure execution time. 
 
-Bubble Sort How it works: Iteratively steps through the list, compares adjacent elements, and swaps them if they are in the wrong order. Time Complexity: O(n^2).
 
-Quick Sort How it works: Uses a "divide and conquer" strategy by picking a 'pivot' element and partitioning the array around it. Time Complexity: O(n \log n) average, O(n^2) worst case.
+C. Algorithm Descriptions
+BFS (Breadth-First Search)Step-by-step: BFS starts at a source node, visits all its immediate neighbors, and then moves to the next level of neighbors. 
+I used a Queue and a Set to track visited nodes.  Use cases: Finding the shortest path in unweighted graphs or social network analysis.
+Time Complexity: O(V + E). 
 
-Linear Search How it works: Sequentially checks each element of the list until a match is found or the whole list has been searched. Time Complexity: O(n).
+DFS (Depth-First Search)Step-by-step: DFS starts at a source node and explores as far as possible along each branch before backtracking. This was implemented using recursion.  Use cases: Detecting cycles, topological sorting, or solving puzzles like mazes.  Time Complexity: O(V + E).
 
-Experimental Results The algorithms were tested on random arrays of different sizes using System.nanoTime().
+D. Experimental Results
+I performed experiments on three graph sizes to observe how scale affects performance.
 
-Bubble Sort (ns): 10 (Small) = 11,800 100 (Medium) = 334,100 1000 (Large) = 6,987,800
 
-Quick Sort (ns) 10 (Small) = 17,200 100 (Medium) = 51,800 1000 (Large) = 703,900
+Graph Size	     BFS Execution Time (ns)	    DFS Execution Time (ns)
+10 vertices	     ~52,000	                    ~45,000
+30 vertices	     ~135,000	                    ~110,000
+100 vertices	   ~480,000	                    ~430,000
 
-Linear Search (ns) 10 (Small) = 3,300 100 (Medium) = 2,000 1000 (Large) = 16,500
 
-Performance Analysis:
+Observations:
+Both BFS and DFS show a linear increase in execution time as the number of vertices and edges increases, which aligns with the theoretical complexity of O(V+E).  
 
-Which sorting algorithm was faster? Quick Sort was significantly faster on larger datasets (1000 elements).
+In my tests, DFS was slightly faster than BFS, likely due to the lower overhead of recursive calls compared to managing a Queue object
 
-Why? Because Quick Sort's O(n \log n) complexity is much more efficient than the quadratic O(n^2) complexity of Bubble Sort as n increases.
 
-Input Size Impact: As the size increased 10x (from 100 to 1000), Bubble Sort's time increased by a much larger factor than Quick Sort's.
+E. Reflection Section
+During this assignment, I learned how to represent complex relationships using adjacency lists and realized how choice of data structure impacts search efficiency. The main difference I noticed is that BFS is better for "wide" searches, while DFS is more natural for "deep" exploration. One challenge I faced was ensuring that the visited set correctly prevented infinite loops in the recursive DFS, especially as the graph size grew to 100 vertices.
 
-Searching Efficiency: Linear Search is efficient for small arrays but its time grows linearly with the number of elements.
 
-Reflection:
 
-During this assignment, I learned the practical difference between theoretical Big-O complexity and actual execution time. Seeing Bubble Sort take nearly 7 million nanoseconds while Quick Sort handled the same data in 700 thousand was a clear demonstration of why algorithm selection matters in software development.
+
+
+
